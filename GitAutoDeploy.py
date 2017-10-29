@@ -50,6 +50,10 @@ class GitAutoDeploy(BaseHTTPRequestHandler):
         self.respond(204)
 
         urls = self.parseRequest()
+        
+        if self.branch != 'refs/heads/master':
+            return
+
         for url in urls:
             paths = self.getMatchingPaths(url)
             for path in paths:
